@@ -98,13 +98,13 @@
             "type": "string",
             "format": "uuid"
           },
-          "admin": {
-            "type": "boolean"
-          },
           "name": {
             "type": "string"
           },
           "email": {
+            "type": "string"
+          },
+          "password": {
             "type": "string"
           },
           "created_at": {
