@@ -10,9 +10,9 @@ export class CreateUserController {
         
             const { name, email, password } = request.body;
 
-            const createUserService = new CreateUserUseCase;
+            const createUserUsecase = new CreateUserUseCase;
 
-            const result = await createUserService.execute({ name, email, password });
+            const result = await createUserUsecase.execute({ name, email, password });
 
             return response.json(result);
     }
