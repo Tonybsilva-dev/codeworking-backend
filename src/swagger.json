@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Codeworkind API",
+    "description": "Essa é uma documentação sobre a API codeworking",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Antonio S",
+      "email": "tonybsilvadev@gmail.com",
+      "url": "https://www.linkedin.com/in/tony-silva/"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "basepath": "/api"
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Gerenciamento de usuários",
+        "description": "Cria um novo usuário.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "John Doe",
+                  "email": "john@doe.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Operaçao realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "examples": {
+                  "UserExample": {
+                    "$ref": "#/components/examples/UserExample"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email já está sendo utilizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "This email is already in use."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "admin": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "examples": {
+      "UserExample": {
+        "value": {
+          "id": "211c4ffc-918c-4ba6-80fc-9dc7a0f9ee2d",
+          "name": "JOHN DOE",
+          "email": "john@doe.com",
+          "password": "$2b$08$dcjPstIAJyRKcQgbFgRJiOcR9f0pXHLHbzgCIlmkepH6VD4YV2iUG",
+          "created_at": "2022-03-20T21:18:08.143Z",
+          "updated_at": "2022-03-20T21:18:08.143Z"
+        }
+      }
+    }
+  }
+}
