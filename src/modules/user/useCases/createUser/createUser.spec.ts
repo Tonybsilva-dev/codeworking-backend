@@ -1,11 +1,38 @@
+import supertest from 'supertest';
+import { app } from '../../../../shared/http/app';
+import { createConnection } from '../../../../shared/infra/database/typeorm/typeormClient';
 
-function sum(a: any, b: any) {
-  return a + b;
-}
+describe('Create User Controller', () => {
 
-describe('createUser', () => {
-  it('should create user', () => {
-    const result = sum(1, 2);
-    expect(result).toBe(3);
+  const request = supertest(app)
+
+  beforeAll(async () => {
+    const connection = createConnection();
+  })
+
+  it("Should be able to create a new user", async () => {
+    const response = await request.post("/users")
+      .send({
+        email: "user@example.com",
+        name: "User Example",
+        password: "123546"
+      })
+    expect(response.status).toBe(200);
+    expect(response.body).toHaveProperty("id")
   });
+
+  // it.skip("Should not be able to create a user with exists email", async () => {
+  //   const response = await request(app).post("/users")
+  //     .send({
+  //       email: "user@example.com",
+  //       name: "User Example"
+  //     });
+
+  //   const data = {
+  //     "status": "error",
+  //     "message": "Email address already used"
+  //   }
+
+  //   expect(response.status).toBe(400);
+  // });
 })

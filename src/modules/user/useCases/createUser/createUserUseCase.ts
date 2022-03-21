@@ -1,7 +1,7 @@
 import { hash } from 'bcrypt';
-import { User } from 'shared/infra/database/typeorm/entities/User';
 import { getRepository } from 'typeorm';
 import AppError from '../../../../shared/http/errors/AppError';
+import { User } from '../../../../shared/infra/database/typeorm/entities/User';
 import { ICreateUserDTO } from './createUserDTO';
 
 
